@@ -28,7 +28,7 @@ const NavBar = () => {
         </details>
       </li>
       <li>
-        <Link className="font-Roboto font-bold" to="/#">
+        <Link className="font-Roboto font-bold" to="/about">
           ABOUT US
         </Link>
       </li>
