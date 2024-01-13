@@ -1,11 +1,13 @@
-import Aboutus from "./Aboutus";
+// import Aboutus from "./Aboutus";
+import FeatureCar from "../Shared/FeaturedCar/FeatureCar";
 import Banner from "./Banner";
 
 const Home = () => {
   return (
     <div>
       <Banner />
-      <Aboutus />
+      {/* <Aboutus /> */}
+      <FeatureCar />
     </div>
   );
 };
