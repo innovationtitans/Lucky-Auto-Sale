@@ -10,12 +10,12 @@ const Footer = () => {
         </nav>
         <nav>
           <header className="footer-title">Shop Hours</header>
-          <p>Monday: 8:00 AM to - 5:00 PM</p>
-          <p>Tuesday: 8:00 AM to - 5:00 PM</p>
-          <p>Wednesday: 8:00 AM to - 5:00 PM</p>
-          <p>Thursday: 8:00 AM to - 5:00 PM</p>
-          <p>Friday: 8:00 AM to - 5:00 PM</p>
-          <p>Saturday: 8:00 AM to - 5:00 PM</p>
+          <p>Monday: 8:00 AM - 5:00 PM</p>
+          <p>Tuesday: 8:00 AM - 5:00 PM</p>
+          <p>Wednesday: 8:00 AM - 5:00 PM</p>
+          <p>Thursday: 8:00 AM - 5:00 PM</p>
+          <p>Friday: 8:00 AM - 5:00 PM</p>
+          <p>Saturday: 8:00 AM - 5:00 PM</p>
           <p>Sunday: Close</p>
         </nav>
       </footer>
