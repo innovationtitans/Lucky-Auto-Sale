@@ -1,15 +1,14 @@
 const Footer = () => {
   return (
     <div className="pt-10 bg-base-200 text-base-content">
-      <footer className="footer  max-w-7xl mx-auto">
+      <footer className="footer place-items-center md:place-items-start  max-w-7xl mx-auto flex justify-around items-baseline">
         <nav>
-          <header className="footer-title">Services</header>
-          <a className="link link-hover">View Inventory</a>
+          <a className="link link-hover footer-title">View Inventory</a>
           <a className="link link-hover">Contact us</a>
           <a className="link link-hover">About us</a>
         </nav>
         <nav>
-          <header className="footer-title">Shop Hours</header>
+          <header className="footer-title ">Shop Hours</header>
           <p>Monday: 8:00 AM - 5:00 PM</p>
           <p>Tuesday: 8:00 AM - 5:00 PM</p>
           <p>Wednesday: 8:00 AM - 5:00 PM</p>
@@ -20,7 +19,7 @@ const Footer = () => {
         </nav>
       </footer>
       <div className="py-12  border-t bg-base-200 text-base-content border-base-300">
-        <footer className="footer  max-w-7xl mx-auto">
+        <footer className="footer place-items-center   max-w-7xl mx-auto">
           <aside className="items-center grid-flow-col">
             <svg
               width="24"
@@ -35,7 +34,7 @@ const Footer = () => {
             </svg>
             <p>Developed By Innovation Titans</p>
           </aside>
-          <nav className="md:place-self-center md:justify-self-end">
+          {/* <nav className="md:place-self-center md:justify-self-end">
             <div className="grid grid-flow-col gap-4">
               <a>
                 <svg
@@ -71,7 +70,7 @@ const Footer = () => {
                 </svg>
               </a>
             </div>
-          </nav>
+          </nav> */}
         </footer>
       </div>
     </div>

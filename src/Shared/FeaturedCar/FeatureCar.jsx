@@ -27,7 +27,7 @@ const FeatureCar = () => {
   return (
     <>
       <div className="max-w-7xl mx-auto my-7">
-        <h1 className="text-4xl text-center mb-7">View Our Cars</h1>
+        <h1 className="text-4xl text-center mb-7">View Listings</h1>
         <Swiper
           onSwiper={setSwiperRef}
           slidesPerView={3}
@@ -41,13 +41,21 @@ const FeatureCar = () => {
             return (
               <>
                 <SwiperSlide key={index}>
-                  <img src={car.coverImg} alt="" />
+                  <img
+                    className="h-52 w-52 md:h-[500px] md:w-[500px]"
+                    src={car.coverImg}
+                    alt=""
+                  />
                   <p>{car.name}</p>
                 </SwiperSlide>
               </>
             );
           })}
         </Swiper>
+
+        <div className="text-center pt-8">
+          <button className=" btn btn-outline btn-lg">All Listings</button>
+        </div>
       </div>
     </>
   );
