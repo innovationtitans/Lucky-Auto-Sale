@@ -8,7 +8,14 @@ const NavBar = () => {
           HOME
         </Link>
       </li>
+
       <li>
+        <Link className="font-Roboto font-bold" to="/">
+          OUR LISTINGS
+        </Link>
+      </li>
+
+      {/* <li>
         <details className="font-Roboto font-bold">
           <summary>CAR FOR SALE</summary>
           <ul className="p-2 ">
@@ -26,10 +33,16 @@ const NavBar = () => {
             </li>
           </ul>
         </details>
-      </li>
+      </li> */}
+
       <li>
         <Link className="font-Roboto font-bold" to="/about">
           ABOUT US
+        </Link>
+      </li>
+      <li>
+        <Link className="font-Roboto font-bold" to="/dashboard">
+          DASHBOARD
         </Link>
       </li>
     </>
@@ -37,7 +50,10 @@ const NavBar = () => {
 
   return (
     <div className="navbar bg-base-100 flex justify-between max-w-7xl mx-auto">
-      <img className="w-[75%] lg:w-1/3" src={logo} alt="Store Logo" />
+      <Link to="/" className="w-fit cursor-pointer">
+        <img className="w-[75%] " src={logo} alt="Store Logo" />
+      </Link>
+
       <div className="dropdown">
         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
           <svg
@@ -63,8 +79,8 @@ const NavBar = () => {
         </ul>
       </div>
 
-      <div className="navbar-end hidden lg:flex lg:justify-end">
-        <ul className="menu menu-horizontal px-1">{nav}</ul>
+      <div className="navbar-end hidden w-[1200px] lg:flex lg:justify-end">
+        <ul className="menu menu-horizontal px">{nav}</ul>
       </div>
     </div>
   );

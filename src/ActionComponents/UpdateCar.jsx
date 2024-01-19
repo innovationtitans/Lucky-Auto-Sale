@@ -1,18 +1,20 @@
-import { useForm } from "react-hook-form";
 import useAxiosPublic from "../Hooks/useAxiosPublic";
-import useAxiosSecure from "../Hooks/useAxiosSecure";
+import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
+import { useLoaderData } from "react-router-dom";
 import { useState } from "react";
+import useAxiosSecure from "../Hooks/useAxiosSecure";
 
-const AddCar = () => {
+const UpdateCar = () => {
   const image_hosting_key = import.meta.env.VITE_IMAGE_API;
   const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
   const axiosPublic = useAxiosPublic();
   const axiosSecure = useAxiosSecure();
   const [Error, setError] = useState("");
-  const [uploading, setUploading] = useState(true);
+  const [uploading, setUploading] = useState(false);
 
-  console.log("first", uploading);
+  const CarData = useLoaderData();
+  console.log(CarData);
 
   const {
     register,
@@ -117,7 +119,7 @@ const AddCar = () => {
         };
         // console.log(allData);
 
-        axiosSecure.post("/addCar", allData).then((res) => {
+        axiosSecure.update("/addCar", allData).then((res) => {
           if (res.data.insertedId) {
             Swal.fire({
               position: "top-end",
@@ -160,6 +162,7 @@ const AddCar = () => {
               <input
                 type="text"
                 placeholder="Year"
+                defaultValue={CarData[0].year}
                 className="input input-bordered"
                 {...register("year")}
               />
@@ -173,6 +176,7 @@ const AddCar = () => {
                 type="text"
                 placeholder="Make"
                 className="input input-bordered"
+                defaultValue={CarData[0].make}
                 required
                 {...register("make")}
               />
@@ -186,6 +190,7 @@ const AddCar = () => {
                 type="text"
                 placeholder="Model"
                 className="input input-bordered"
+                defaultValue={CarData[0].model}
                 required
                 {...register("model")}
               />
@@ -199,6 +204,7 @@ const AddCar = () => {
                 type="text"
                 placeholder="Drivertrain"
                 className="input input-bordered"
+                defaultValue={CarData[0].drivertrain}
                 required
                 {...register("drivertrain")}
               />
@@ -212,6 +218,7 @@ const AddCar = () => {
                 type="text"
                 placeholder="Milage"
                 className="input input-bordered"
+                defaultValue={CarData[0].milage}
                 required
                 {...register("milage")}
               />
@@ -297,6 +304,7 @@ const AddCar = () => {
                 type="text"
                 placeholder="Engine"
                 className="input input-bordered"
+                defaultValue={CarData[0].engine}
                 required
                 {...register("engine")}
               />
@@ -310,6 +318,7 @@ const AddCar = () => {
                 type="text"
                 placeholder="VIN Number"
                 className="input input-bordered"
+                defaultValue={CarData[0].vin}
                 required
                 {...register("vin")}
               />
@@ -323,6 +332,7 @@ const AddCar = () => {
                 type="text"
                 placeholder="Fuel Economy HWY"
                 className="input input-bordered"
+                defaultValue={CarData[0].cityFuel}
                 required
                 {...register("cityFuel")}
               />
@@ -336,6 +346,7 @@ const AddCar = () => {
                 type="text"
                 placeholder="Fuel Economy HWY"
                 className="input input-bordered"
+                defaultValue={CarData[0].HWYFuel}
                 required
                 {...register("HWYFuel")}
               />
@@ -349,6 +360,7 @@ const AddCar = () => {
                 type="text"
                 placeholder="Price"
                 className="input input-bordered"
+                defaultValue={CarData[0].price}
                 required
                 {...register("price")}
               />
@@ -360,6 +372,7 @@ const AddCar = () => {
               <textarea
                 placeholder="Description"
                 className="textarea textarea-bordered textarea-lg w-full max-w-full"
+                defaultValue={CarData[0].description}
                 {...register("description")}
               ></textarea>
             </div>
@@ -368,7 +381,8 @@ const AddCar = () => {
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">
-                    Cover Image.<br></br>This image will show up in front page
+                    Cover Image.<br></br>This image will show up in front page.
+                    (Only JPG and PNG)
                   </span>
                 </label>
 
@@ -383,7 +397,7 @@ const AddCar = () => {
                 <label className="label">
                   <span className="label-text">
                     Upload car interior and exterior images here. <br></br>You
-                    can choose multple files.
+                    can choose multple files. (Only JPG and PNG)
                   </span>
                 </label>
 
@@ -416,4 +430,4 @@ const AddCar = () => {
   );
 };
 
-export default AddCar;
+export default UpdateCar;
