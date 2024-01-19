@@ -10,30 +10,10 @@ const NavBar = () => {
       </li>
 
       <li>
-        <Link className="font-Roboto font-bold" to="/">
+        <Link className="font-Roboto font-bold" to="/inventory">
           OUR LISTINGS
         </Link>
       </li>
-
-      {/* <li>
-        <details className="font-Roboto font-bold">
-          <summary>CAR FOR SALE</summary>
-          <ul className="p-2 ">
-            <li>
-              <Link to="/#">SUV LISTING</Link>
-            </li>
-            <li>
-              <Link to="/#">CAR LISTING</Link>
-            </li>
-            <li>
-              <Link to="/#">VAN LISTING</Link>
-            </li>
-            <li>
-              <Link to="/#">ALL LISTING</Link>
-            </li>
-          </ul>
-        </details>
-      </li> */}
 
       <li>
         <Link className="font-Roboto font-bold" to="/about">

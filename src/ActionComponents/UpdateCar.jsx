@@ -119,19 +119,21 @@ const UpdateCar = () => {
         };
         // console.log(allData);
 
-        axiosSecure.update("/addCar", allData).then((res) => {
-          if (res.data.insertedId) {
-            Swal.fire({
-              position: "top-end",
-              icon: "success",
-              title: "Your data has been saved",
-              showConfirmButton: true,
-              timer: 1500,
-            });
-            setUploading(false);
-            console.log("after submitting", uploading);
-          }
-        });
+        axiosSecure
+          .patch(`/updateCar/${CarData[0]._id}`, allData)
+          .then((res) => {
+            if (res.data.modifiedCount > 0) {
+              Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Your data has been Updated",
+                showConfirmButton: true,
+                timer: 1500,
+              });
+
+              console.log("after submitting", uploading);
+            }
+          });
       }
     } catch (err) {
       console.log(
@@ -421,9 +423,9 @@ const UpdateCar = () => {
           {Error && (
             <p className="text-center py-4 text-white bg-red-600">{Error}</p>
           )}
-          {uploading && (
+          {/* {uploading && (
             <span className="loading loading-bars loading-lg"></span>
-          )}
+          )} */}
         </div>
       </div>
     </>
