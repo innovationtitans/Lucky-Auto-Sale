@@ -90,7 +90,8 @@ const AddCar = () => {
         const cityFuel = data.cityFuel;
         const HWYFuel = data.HWYFuel;
         const price = data.price;
-        const date = new Date().toJSON().slice(0, 10);
+        // const date = new Date().toJSON().slice(0, 10);
+        const date = new Date().toLocaleString();
         const Image_cover = res.data.data.display_url;
         const description = data.description;
         const milage = data.milage;
@@ -148,7 +149,7 @@ const AddCar = () => {
   return (
     <>
       <h1 className="text-center my-10 text-3xl font-Roboto">
-        Enter Car information.
+        Enter Car information
       </h1>
       <div className="hero min-h-fit max-w-7xl mx-auto">
         <div className="card  w-full  shadow-2xl bg-base-100">

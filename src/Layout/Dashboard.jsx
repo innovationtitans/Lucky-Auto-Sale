@@ -27,6 +27,9 @@ const Dashboard = () => {
               <li>
                 <NavLink to="/dashboard/MyCollections">My Collections</NavLink>
               </li>
+              <li>
+                <NavLink to="/dashboard/oldBanner">DeleteOldBanner</NavLink>
+              </li>
             </ul>
           </div>
         </div>
@@ -39,7 +42,7 @@ const Dashboard = () => {
               aria-label="open sidebar"
               className="btn  btn-outline"
             >
-              Click here for open the Drawer
+              Open the Drawer
             </label>
           </div>
           {noOutlet ? (

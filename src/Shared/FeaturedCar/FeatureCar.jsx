@@ -63,11 +63,11 @@ const FeatureCar = () => {
             return (
               <>
                 <div
-                  className="card w-72 lg:w-96 mx-auto h-fit bg-base-100 shadow-xl my-10 "
+                  className="card w-72 lg:w-96 mx-auto h-full md:h-96 bg-base-100 shadow-xl my-10 image-full"
                   key={index}
                 >
                   <figure>
-                    <img src={car.Image_cover} className="h-96" alt="Shoes" />
+                    <img src={car.Image_cover} className="" alt="Shoes" />
                   </figure>
                   <div className="card-body">
                     <h2 className="card-title">
@@ -82,11 +82,11 @@ const FeatureCar = () => {
                       </p>
                     </div>
 
+                    <p></p>
+
                     <div className="card-actions justify-end mt-4">
                       <Link to={`/carDetail/${car._id}`}>
-                        <button className="btn btn-outline ">
-                          Check Details
-                        </button>
+                        <button className="btn">Check Details</button>
                       </Link>
                     </div>
                   </div>

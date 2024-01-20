@@ -8,6 +8,8 @@ import CarDetail from "../Pages/CarDetail";
 import Inventory from "../Pages/Inventory";
 import MyCollections from "../ActionComponents/MyCollections";
 import UpdateCar from "../ActionComponents/UpdateCar";
+import Login from "../Security/Login";
+import Signup from "../Security/Singup";
 
 const router = createBrowserRouter([
   {
@@ -26,11 +28,21 @@ const router = createBrowserRouter([
         path: "/carDetail/:id",
         element: <CarDetail />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/carDetail/${params.id}`),
+          fetch(
+            `https://lucky-auto-shope-backend-side.vercel.app/carDetail/${params.id}`
+          ),
       },
       {
         path: "/inventory",
         element: <Inventory />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/signup",
+        element: <Signup />,
       },
     ],
   },
@@ -50,7 +62,9 @@ const router = createBrowserRouter([
         path: "updateCar/:id",
         element: <UpdateCar />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/updateCar/${params.id}`),
+          fetch(
+            `https://lucky-auto-shope-backend-side.vercel.app/updateCar/${params.id}`
+          ),
       },
     ],
   },

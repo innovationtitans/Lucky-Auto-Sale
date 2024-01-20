@@ -1,5 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
-import useAxiosPublic from "../Hooks/useAxiosPublic";
+import "./Inventory.css";
 import { PiEngineFill } from "react-icons/pi";
 import { MdEmail } from "react-icons/md";
 import { FaPhoneAlt } from "react-icons/fa";
@@ -8,22 +7,55 @@ import { GiGearStick } from "react-icons/gi";
 import { FaGasPump } from "react-icons/fa6";
 
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 const Inventory = () => {
-  const axiosPublic = useAxiosPublic();
-  const { data = [] } = useQuery({
-    queryKey: ["inventory"],
-    queryFn: async () => {
-      const res = await axiosPublic.get("/cars");
-      return res.data;
-    },
-  });
+  // const axiosPublic = useAxiosPublic();
 
-  console.log(data);
+  const [products, setProducts] = useState([]);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [itemsPerPage, setItemsPerPage] = useState(5);
+  const [count, setCount] = useState(0);
+
+  const numberOfPages = Math.ceil(count / itemsPerPage);
+  const pages = [...Array(numberOfPages).keys()];
+
+  useEffect(() => {
+    fetch("https://lucky-auto-shope-backend-side.vercel.app/carCount")
+      .then((res) => res.json())
+      .then((data) => setCount(data.count));
+  }, []);
+
+  useEffect(() => {
+    fetch(
+      `https://lucky-auto-shope-backend-side.vercel.app/products?page=${currentPage}&size=${itemsPerPage}`
+    )
+      .then((res) => res.json())
+      .then((data) => setProducts(data));
+  }, [currentPage, itemsPerPage]);
+
+  const handleItemsPerPage = (e) => {
+    const val = parseInt(e.target.value);
+    console.log(val);
+    setItemsPerPage(val);
+    setCurrentPage(0);
+  };
+
+  const handlePrevPage = () => {
+    if (currentPage > 0) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const handleNextPage = () => {
+    if (currentPage < pages.length - 1) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
 
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-14">
-      {data.map((d) => {
+      {products.map((d) => {
         return (
           <div key={d._id}>
             <div className="card lg:card-side bg-base-200 my-10 shadow-xl">
@@ -31,9 +63,14 @@ const Inventory = () => {
                 <img className="w-96" src={d.Image_cover} alt="car image" />
               </figure>
               <div className="card-body">
-                <h1 className="text-2xl font-Roboto font-bold">
-                  {d.year + " " + d.model + " " + d.make}
-                </h1>
+                <div className="flex items-center">
+                  <h1 className="text-2xl font-Roboto font-bold">
+                    {d.year + " " + d.model + " " + d.make}
+                  </h1>
+                  <p className=" text-2xl ml-2 text-red-500">
+                    {d?.sold ? "SOLD" : ""}
+                  </p>
+                </div>
                 <div className="md:flex justify-between items-baseline">
                   <div>
                     <div className="flex justify-between">
@@ -121,6 +158,34 @@ const Inventory = () => {
           </div>
         );
       })}
+
+      <div className="pagination space-x-2 md:space-x-10">
+        <p className="mb-4 bg-yellow-100 w-fit mx-auto p-2">
+          Current page: {currentPage}
+        </p>
+        <button onClick={handlePrevPage}>Prev</button>
+        {pages.map((page) => (
+          <button
+            className={currentPage === page ? "selected" : undefined}
+            onClick={() => setCurrentPage(page)}
+            key={page}
+          >
+            {page}
+          </button>
+        ))}
+        <button onClick={handleNextPage}>Next</button>
+        <select
+          value={itemsPerPage}
+          onChange={handleItemsPerPage}
+          name=""
+          id=""
+        >
+          <option value="5">5</option>
+          <option value="10">10</option>
+          <option value="20">20</option>
+          <option value="50">50</option>
+        </select>
+      </div>
     </div>
   );
 };

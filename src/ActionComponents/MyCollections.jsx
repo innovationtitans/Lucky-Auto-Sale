@@ -4,9 +4,11 @@ import { MdEditSquare } from "react-icons/md";
 import { MdDelete } from "react-icons/md";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const MyCollections = () => {
   const axiosSecure = useAxiosSecure();
+  const [sold, setSold] = useState(false);
 
   const { data: CarInformation = [], refetch } = useQuery({
     queryKey: ["mycollection"],
@@ -15,6 +17,15 @@ const MyCollections = () => {
       return res.data;
     },
   });
+
+  console.log(sold);
+
+  const handleSold = async (id) => {
+    const res = await axiosSecure.patch(`sold/${id}`);
+    console.log(res.data);
+    refetch();
+    setSold(true);
+  };
 
   const handleDetele = (id) => {
     Swal.fire({
@@ -43,15 +54,20 @@ const MyCollections = () => {
 
   return (
     <>
+      <div className="text-center my-20">
+        The sold option is not toggled here. Clicking on the sold option (yes or
+        no) will make it tagged as sold in homepage.
+      </div>
       <div className="overflow-x-auto my-20">
         <table className="table">
           {/* head */}
           <thead>
             <tr>
-              <th>ID</th>
+              <th>Last 4 digit of ID</th>
               <th>Detail</th>
               <th>Date Posted</th>
               <th>Edit</th>
+              <th>Sold?</th>
               <th>Delete</th>
             </tr>
           </thead>
@@ -60,7 +76,7 @@ const MyCollections = () => {
               return (
                 <tr key={d._id}>
                   <th>
-                    <td>{d._id}</td>
+                    <td>{d._id.slice(19, d._id.length - 1)}</td>
                   </th>
                   <td>
                     <div className="flex items-center gap-3">
@@ -85,6 +101,13 @@ const MyCollections = () => {
                       </p>
                     </Link>
                   </td>
+
+                  <td>
+                    <p onClick={() => handleSold(d._id)}>
+                      {d.sold ? "Yes" : "No"}
+                    </p>
+                  </td>
+
                   <td>
                     <p
                       className="text-3xl text-red-500 cursor-pointer"

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosPublic = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: "https://lucky-auto-shope-backend-side.vercel.app",
 });
 const useAxiosPublic = () => {
   return axiosPublic;

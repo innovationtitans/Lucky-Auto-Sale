@@ -92,7 +92,8 @@ const UpdateCar = () => {
         const cityFuel = data.cityFuel;
         const HWYFuel = data.HWYFuel;
         const price = data.price;
-        const date = new Date().toJSON().slice(0, 10);
+        // const date = new Date().toJSON().slice(0, 10);
+        const date = new Date().toLocaleString();
         const Image_cover = res.data.data.display_url;
         const description = data.description;
         const milage = data.milage;
