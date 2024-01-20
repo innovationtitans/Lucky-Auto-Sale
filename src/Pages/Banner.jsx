@@ -5,10 +5,12 @@ import useAxiosSecure from "../Hooks/useAxiosSecure";
 import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
+import useAuth from "../Hooks/useAuth";
 const Banner = () => {
   const image_hosting_key = import.meta.env.VITE_IMAGE_API;
   const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
   const axiosSecure = useAxiosSecure();
+  const { user } = useAuth();
 
   const [bannerImage, setBannerImage] = useState("");
 
@@ -90,17 +92,19 @@ const Banner = () => {
               View Our Inventory
             </button>
           </Link>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="my-10">
-              <p className="text-2xl">Upload a new Banner</p>
-              <input
-                type="file"
-                className="file-input file-input-bordered file-input-warning w-full max-w-xs"
-                {...register("bannerImg")}
-              />
-            </div>
-            <input type="submit" className="btn btn-warning" />
-          </form>
+          {user && (
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <div className="my-10">
+                <p className="text-2xl">Upload a new Banner</p>
+                <input
+                  type="file"
+                  className="file-input file-input-bordered file-input-warning w-full max-w-xs"
+                  {...register("bannerImg")}
+                />
+              </div>
+              <input type="submit" className="btn btn-warning" />
+            </form>
+          )}
         </div>
       </div>
     </div>

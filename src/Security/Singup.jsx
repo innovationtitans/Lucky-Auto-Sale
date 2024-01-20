@@ -15,9 +15,6 @@ const Singup = () => {
     const email = data.email.value;
     const password = data.password.value;
     const confirmPassword = data.conpassword.value;
-
-    console.log(email, password, confirmPassword);
-
     if (password === confirmPassword) {
       signup(email, password)
         .then((user) => {

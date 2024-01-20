@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
+import useAuth from "../Hooks/useAuth";
 const NavBar = () => {
+  const { user } = useAuth();
   const nav = (
     <>
       <li>
@@ -20,11 +22,13 @@ const NavBar = () => {
           ABOUT US
         </Link>
       </li>
-      <li>
-        <Link className="font-Roboto font-bold" to="/dashboard">
-          DASHBOARD
-        </Link>
-      </li>
+      {user && (
+        <li>
+          <Link className="font-Roboto font-bold" to="/dashboard">
+            DASHBOARD
+          </Link>
+        </li>
+      )}
     </>
   );
 

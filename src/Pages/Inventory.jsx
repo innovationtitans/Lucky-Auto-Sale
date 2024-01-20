@@ -21,14 +21,14 @@ const Inventory = () => {
   const pages = [...Array(numberOfPages).keys()];
 
   useEffect(() => {
-    fetch("https://lucky-auto-shope-backend-side.vercel.app/carCount")
+    fetch("http://localhost:5000/carCount")
       .then((res) => res.json())
       .then((data) => setCount(data.count));
   }, []);
 
   useEffect(() => {
     fetch(
-      `https://lucky-auto-shope-backend-side.vercel.app/products?page=${currentPage}&size=${itemsPerPage}`
+      `http://localhost:5000/products?page=${currentPage}&size=${itemsPerPage}`
     )
       .then((res) => res.json())
       .then((data) => setProducts(data));

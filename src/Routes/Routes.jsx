@@ -10,11 +10,14 @@ import MyCollections from "../ActionComponents/MyCollections";
 import UpdateCar from "../ActionComponents/UpdateCar";
 import Login from "../Security/Login";
 import Signup from "../Security/Singup";
+import PrivateRoute from "./PrivateRoute";
+import ErrorPage from "../Pages/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
@@ -28,9 +31,7 @@ const router = createBrowserRouter([
         path: "/carDetail/:id",
         element: <CarDetail />,
         loader: ({ params }) =>
-          fetch(
-            `https://lucky-auto-shope-backend-side.vercel.app/carDetail/${params.id}`
-          ),
+          fetch(`http://localhost:5000/carDetail/${params.id}`),
       },
       {
         path: "/inventory",
@@ -48,23 +49,37 @@ const router = createBrowserRouter([
   },
   {
     path: "dashboard",
-    element: <Dashboard />,
+    element: (
+      <PrivateRoute>
+        <Dashboard />
+      </PrivateRoute>
+    ),
     children: [
       {
         path: "addcar",
-        element: <AddCar />,
+        element: (
+          <PrivateRoute>
+            <AddCar />
+          </PrivateRoute>
+        ),
       },
       {
         path: "MyCollections",
-        element: <MyCollections />,
+        element: (
+          <PrivateRoute>
+            <MyCollections />
+          </PrivateRoute>
+        ),
       },
       {
         path: "updateCar/:id",
-        element: <UpdateCar />,
+        element: (
+          <PrivateRoute>
+            <UpdateCar />
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
-          fetch(
-            `https://lucky-auto-shope-backend-side.vercel.app/updateCar/${params.id}`
-          ),
+          fetch(`http://localhost:5000/updateCar/${params.id}`),
       },
     ],
   },
